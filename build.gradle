@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'net.researchgate.release' version '2.6.0'
+    id 'org.springframework.boot' version '1.5.10.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.3.RELEASE'
+    id 'org.flywaydb.flyway' version '4.2.0'
+}
+
+repositories {
+    maven { url 'https://repo.spring.io/libs-milestone' }
+    maven { url 'https://artifacts.vizientinc.com/maven-snapshot-local' }
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Dalston.SR1'
+        mavenBom 'io.pivotal.spring.cloud:spring-cloud-services-dependencies:1.5.0.RELEASE'
+    }
+}
+
+group 'learning'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+dependencies {
+    compile(
+            "io.pivotal.spring.cloud:spring-cloud-services-starter-config-client",
+            "org.springframework.boot:spring-boot-starter-web:1.5.10.RELEASE",
+            "org.springframework.boot:spring-boot-starter-actuator:1.5.10.RELEASE",
+            'org.projectlombok:lombok:1.16.16'
+    )
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
